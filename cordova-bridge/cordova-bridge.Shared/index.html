@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Outer Page</title>
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <!-- cordova-bridge.Windows references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+</head>
+<body>
+
+    <p>outer container</p>
+
+    <p id="deviceState">NOT READY</p>
+    <p id="geoState">GEO NOT READY</p>
+    <p id="notiicationState">Notification NOT READY</p>
+    <x-ms-webview id="webView" src="ms-appx-web:///inner.html" style="width: 300px; height: 300px; border:3px solid white"></x-ms-webview>
+
+
+
+
+
+
+
+    <script src="js/default.js"></script>
+    <script src="js/cordova.js"></script>
+    <script src="js/test.js"></script>
+    <script>
+        var WV = document.getElementById('webView');
+
+
+        //setting the device ready state in the webveiw
+        document.addEventListener("deviceready", function (e) {
+
+            var eval = WV.invokeScriptAsync('eval', 'deviceReady()');
+            eval.start();
+        }, false);
+
+
+
+
+        //setting up the receiver for GEo events
+        WV.addEventListener('MSWebViewFrameNavigationStarting', function (e) {
+            var eventName = e.uri.split('EVENT=');
+            if (eventName = 'geoEvent') {
+
+                //make call to real geo
+                navigator.geolocation.getCurrentPosition(function (g) {
+                    returnEvent(g);
+                }, function (g) { console.log('error') });
+                //inject results into webview
+                var returnEvent = function (g) {
+                    var evalString = 'var geoobj = {}; geoobj.coords = {} ;geoobj.coords.longitude = '+g.coords.longitude+'; geoobj.coords.latitude = '+ g.coords.latitude+'; geoReady(geoobj)';
+                    var eval = WV.invokeScriptAsync('eval', evalString);
+                    eval.start();
+
+                };
+            }
+
+            
+
+        });
+
+
+
+    </script>
+
+
+</body>
+</html>
