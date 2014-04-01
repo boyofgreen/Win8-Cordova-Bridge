@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" StartPage="index.html">
-      <m2:VisualElements DisplayName="cordova-bridge.Shared" Description="cordova-bridge.Windows" ForegroundText="light" BackgroundColor="#464646" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png">
+    <Application Id="App" StartPage="default.html">
+      <m2:VisualElements DisplayName="cordova-bridge.Shared" Description="cordova-bridge.Windows" ForegroundText="light" BackgroundColor="#C8A37A" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png" ToastCapable="true">
         <m2:SplashScreen Image="images\splashscreen.png" />
       </m2:VisualElements>
     </Application>

@@ -9,6 +9,7 @@
     <Content Include="$(MSBuildThisFileDirectory)becon.html" />
     <Content Include="$(MSBuildThisFileDirectory)index.html" />
     <Content Include="$(MSBuildThisFileDirectory)inner.html" />
+    <Content Include="$(MSBuildThisFileDirectory)js\cordova-bridge-clinet.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\cordova.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\default.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\test.js" />
